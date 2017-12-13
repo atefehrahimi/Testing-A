@@ -25,6 +25,7 @@ class TestLib(TestCase):
         self.assertTrue(number_validation(sample1))
 
         sample2 = "a string "                        # a sample2 for check function if raise a exception
-        self.assertRaises(ValueError, number_validation, sample2)
-
+        with self.assertRaises(ValueError) as context:
+            number_validation(sample2)
+        self.assertTrue('Invalid entry' in str(context.exception))
 
